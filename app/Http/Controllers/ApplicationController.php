@@ -12,6 +12,11 @@ use App\Http\Requests\Application\UpdateRequest;
 class ApplicationController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('manager')->only('all', 'update');
+    }
+
     public function all()
     {
         $applications = Application::query()->paginate(10);
