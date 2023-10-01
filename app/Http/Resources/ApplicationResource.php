@@ -21,7 +21,7 @@ class ApplicationResource extends JsonResource
             'пользователь' => User::find($this->user)->name,
             'сообщение' => $this->message,
             'статус' => $this->status,
-            'комментарий' => $this->comment,
+            'комментарий' => $this->when($this->comment, $this->comment),
             'время создания' => $this->created_at->format('d.m.Y h:i:s'),
         ];
     }

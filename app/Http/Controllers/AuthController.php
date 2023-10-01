@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -9,16 +11,25 @@ class AuthController extends Controller
 {
     /**
      * Create a new AuthController instance.
-     *
-     * @return void
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
+    public function register(StoreRequest $request)
+    {
+        $validated = $request->validated();
+
+        User::query()->create($validated);
+
+        return response()->json([
+            'message' => 'Пользователь успешно создан!',
+        ], 201);
     }
 
     /**
-     * Get a JWT via given credentials.
+     * Получить jwt
      */
     public function login(): JsonResponse
     {
@@ -32,7 +43,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the authenticated User.
+     * если авторизовались, получить о себе информацию
      */
     public function me(): JsonResponse
     {
@@ -40,7 +51,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
+     * выйти 
      */
     public function logout(): JsonResponse
     {
@@ -50,7 +61,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh a token.
+     * обновить wjt
      */
     public function refresh(): JsonResponse
     {
@@ -58,7 +69,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the token array structure.
+     * получить структуру jwt
      */
     protected function respondWithToken(string $token): JsonResponse
     {

@@ -20,6 +20,9 @@ class ManagerSeeder extends Seeder
                 'email' => 'manager@gmail.com',
                 'role' => 'manager',
                 'password' => Hash::make(1234),
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

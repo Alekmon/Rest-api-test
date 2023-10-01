@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Application;
+namespace App\Http\Requests\User;
 
-use App\Enum\Status;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +22,9 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => [new Enum(Status::class)],
-            'comment' => ['string'],
+            'name' => ['string'],
+            'email' => ['email', 'unique:users,email'],
+            'password' => ['min:4'],
         ];
     }
 }
