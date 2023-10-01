@@ -24,8 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => [new Enum(Status::class)],
-            'comment' => ['string'],
+            'status' => ['required', new Enum(Status::class)],
+            'comment' => ['required', 'string'],
         ];
     }
 }

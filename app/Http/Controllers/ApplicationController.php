@@ -86,13 +86,6 @@ class ApplicationController extends Controller
      */
     public function update(UpdateRequest $request, Application $application): ApplicationResource|JsonResponse
     {
-        //проверяем что при изменении статуса - был добавлен комментарий
-        if ($request->has('status') && ! $request->has('comment')) {
-            return response()->json([
-                'message' => 'При изменении статуса - поле комментария обязателено для заполнения!',
-            ], 400);
-        }
-
         $validated = $request->safe()->only(['status', 'comment']);
 
         $application->update($validated);

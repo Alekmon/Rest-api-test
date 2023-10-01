@@ -22,8 +22,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'topic' => ['string', 'max:100'],
-            'message' => ['string'],
+            'topic' => ['required', 'string', 'max:100'],
+            'message' => ['required', 'string'],
         ];
     }
 }
