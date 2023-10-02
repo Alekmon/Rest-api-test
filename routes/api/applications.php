@@ -13,6 +13,6 @@ Route::controller(ApplicationController::class)
     Route::get('index', 'index')->name('index');
     Route::post('/', 'store')->name('store');
     Route::get('/{application}', 'show')->name('show');
-    Route::put('update/{application}', 'update')->name('update');
+    Route::patch('update/{application}', 'update')->name('update');
 
 });
