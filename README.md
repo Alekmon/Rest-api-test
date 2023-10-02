@@ -6,3 +6,8 @@
 4. Наполнить базу данных - php artisan db:seed.
 5. Запустить сервер - php artisan serve.
 
+## Разное
+
+После заполнения базы, вы можете войти как manager:
+email - manager@gmail.com,
+password - 1234.
