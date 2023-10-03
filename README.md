@@ -12,6 +12,8 @@
 email - manager@gmail.com,
 password - 1234.
 
+Коллекция postman находится в файле Postman Collection.json.
+
 Пользователь с ролью user может:
 1. Просматривать свои заявки (index).
 2. Создавать новые заявки (store).
